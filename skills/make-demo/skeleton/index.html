@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js" integrity="sha384-sG0Hv1tP1lZCk9KQmrIbY/XNwi+OY84GQqhMscbnsoBFqAz8KNCil1kvfL3Hbbk2" crossorigin="anonymous"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: __GROUND__; }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: __GROUND__; }
+      .scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+    </style>
+  </head>
+  <body>
+    <!--
+      ================= MASTER TIMELINE TEMPLATE (demo video kit) =================
+      Fill in per demo. Rules: STYLE.md · flow: PLAYBOOK.md · techniques: PATTERNS.md
+      - Set data-duration on #root = total video length (seconds).
+      - One <div class="scene" data-composition-src="compositions/frames/NN-*.html"> per beat.
+        Alternate data-track-index 0/1 so cross-fades layer cleanly.
+      - One <audio ...voice/NN.wav track-index=10 volume=1> per beat (start = MEASURED VO cue).
+      - BGM is PRE-WIRED below — DO NOT DELETE IT (offline auto-BGM is skipped; this is mandatory).
+        Set its data-duration = total length.
+      - The last beat is ALWAYS the closing brand-logo end card (STYLE §4.4).
+      - Add cross-frame transitions in the <script> at the seam times (ground __GROUND__ stays continuous).
+    -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="__TOTAL__"
+         data-width="1920" data-height="1080">
+
+      <!-- ── BEATS (replace these two examples) ── -->
+      <div id="el-01" class="scene"
+        data-composition-id="01-xxx" data-composition-src="compositions/frames/01-xxx.html"
+        data-start="0" data-duration="4.0" data-track-index="0"></div>
+      <audio id="el-01-voice" src="assets/voice/01.wav"
+        data-start="0.3" data-duration="3.5" data-track-index="10" data-volume="1"></audio>
+
+      <!-- … more beats … -->
+
+      <!-- Closing brand-logo end card (mandatory last beat) -->
+      <div id="el-NN" class="scene"
+        data-composition-id="NN-close" data-composition-src="compositions/frames/NN-close.html"
+        data-start="0" data-duration="3.8" data-track-index="1"></div>
+      <audio id="el-NN-voice" src="assets/voice/NN.wav"
+        data-start="0" data-duration="2.8" data-track-index="10" data-volume="1"></audio>
+
+      <!-- ── BGM bed — MANDATORY, same v15 track for brand consistency (STYLE §6). Set data-duration = total. ── -->
+      <audio id="el-bgm" src="__BGM__" data-start="0" data-duration="__TOTAL__" data-track-index="11" data-volume="0.15"></audio>
+
+      <!-- ── SFX (optional): whoosh on cuts, riser on builds, click on interactions ── -->
+      <!-- <audio id="el-sfx-whoosh1" src="assets/sfx/whoosh.mp3" data-start="0" data-duration="0.6" data-track-index="21" data-volume="0.3"></audio> -->
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+      (function () { var tl = window.__timelines["main"];
+        // ── cross-frame transitions (seam times). Example recede+erupt: ──
+        // tl.to("#el-01", { scale: 0.96, opacity: 0, filter: "blur(7px)", duration: 0.44, ease: "power2.in" }, 4.0);
+        // tl.fromTo("#el-02", { opacity: 0, scale: 1.02 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }, 4.0);
+
+        tl.to({}, { duration: __TOTAL__ }, 0); // full-span anchor — main.duration() == total
+      })();
+    </script>
+  </body>
+</html>

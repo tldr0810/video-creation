@@ -1,0 +1,19 @@
+{
+  "name": "demo-video-kit",
+  "id": "demo-video-kit",
+  "owner": { "name": "tldr0810" },
+  "metadata": {
+    "description": "On-brand demo videos: human x Claude x HyperFrames workflow engine (brand-kit driven)",
+    "version": "0.2.0"
+  },
+  "plugins": [
+    {
+      "name": "demo-video-kit",
+      "source": "./",
+      "description": "7-gate demo-video workflow: scaffolds from your private brand-kit, walks scope->script->storyboard->build->critique->A/B->lock, and writes learnings back into your brand's STYLE.",
+      "version": "0.2.0",
+      "category": "workflow",
+      "keywords": ["video", "demo", "hyperframes", "brand", "motion"]
+    }
+  ]
+}
