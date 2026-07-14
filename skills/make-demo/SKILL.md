@@ -17,7 +17,7 @@ This skill runs the **same workflow** for every demo so output looks like the sa
 `<SKILL_DIR>` = this skill's base directory (announced when the skill launches; e.g. `~/.claude/skills/make-demo` when installed as a personal skill, or the plugin's `skills/make-demo` when installed as a plugin).
 `<LIBRARY>` = the resolved demo library: `$DEMO_LIB` if set → else `~/demos` if it exists → else `~/manyfold-demos` if it exists (back-compat) → else `~/demos` is created.
 ```bash
-"<SKILL_DIR>/scripts/new-demo.sh" <slug> [--brand <brand>]
+bash "<SKILL_DIR>/scripts/new-demo.sh" <slug> [--brand <brand>]
 ```
 Creates `<LIBRARY>/<slug>/` with skeleton + the brand-kit's assets + BGM pre-wired + a working snapshot of the brand `STYLE.md`. If `--brand` is omitted and `<LIBRARY>/brand-kits/` holds exactly one brand-kit, that one is selected automatically; with multiple, the script errors and lists them.
 
@@ -45,7 +45,7 @@ Because `new-demo.sh` snapshots the brand STYLE into each project, future demos 
 
 ## 5. Adding a new brand (phase B)
 ```bash
-"<SKILL_DIR>/scripts/new-brand.sh" <brand-name>
+bash "<SKILL_DIR>/scripts/new-brand.sh" <brand-name>
 ```
 Creates `<LIBRARY>/brand-kits/<brand-name>/` with a template `brand-kit.json`, a `STYLE.md` seeded from `references/STYLE-FRAME.md` (fill §0–§8 with the brand's values), and a `PATTERNS.md` stub (define the brand's closing end-card). Fill the REPLACE values (colors.ground and bgm are required by the scaffolder), drop in fonts/logos/BGM, then scaffold demos with `--brand <brand-name>`.
 
