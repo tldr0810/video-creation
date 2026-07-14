@@ -8,6 +8,7 @@ description: Use when making an on-brand demo/promo video with the human × Clau
 This skill runs the **same workflow** for every demo so output looks like the same brand, same hands. The engine (this skill) is brand-agnostic; brand style/assets/taboos come from a **brand-kit** in the central library.
 
 ## 0. Prerequisites (verify once)
+If any of these are missing on this runtime, STOP and tell the user what to install (see the repo README for details) — the workflow can still plan script/storyboard without them, but cannot render.
 - HyperFrames CLI available (`npx hyperframes`).
 - Offline TTS: `HYPERFRAMES_PYTHON=~/.hyperframes/venv/bin/python npx hyperframes tts "<line>" -v <voice> -o assets/voice/NN.wav`
 - BGM is mandatory and pre-wired in the skeleton — never ship a music-less render.
@@ -19,6 +20,7 @@ This skill runs the **same workflow** for every demo so output looks like the sa
 ```bash
 bash "<SKILL_DIR>/scripts/new-demo.sh" <slug> [--brand <brand>]
 ```
+**First run?** If `<LIBRARY>/brand-kits/` is empty or missing, do NOT scaffold a demo yet — create the user's brand-kit first (§5), then come back.
 Creates `<LIBRARY>/<slug>/` with skeleton + the brand-kit's assets + BGM pre-wired + a working snapshot of the brand `STYLE.md`. If `--brand` is omitted and `<LIBRARY>/brand-kits/` holds exactly one brand-kit, that one is selected automatically; with multiple, the script errors and lists them.
 
 ## 2. Read the brand-kit before authoring

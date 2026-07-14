@@ -47,7 +47,8 @@ KITS_DIR="$LIB_DIR/brand-kits"
 # ── Brand resolution (sole-brand default) ──
 if [ -z "$BRAND" ]; then
   if [ ! -d "$KITS_DIR" ]; then
-    echo "✗ no brand-kits found in $KITS_DIR — pass --brand <brand>." >&2; exit 1
+    echo "✗ no brand-kits found in $KITS_DIR" >&2
+    echo "  create one first:  bash \"$SKILL_DIR/scripts/new-brand.sh\" <your-brand>" >&2; exit 1
   fi
   # collect immediate subdirectories of brand-kits/
   brands=()
@@ -56,7 +57,8 @@ if [ -z "$BRAND" ]; then
     brands+=("$(basename "$d")")
   done
   if [ "${#brands[@]}" -eq 0 ]; then
-    echo "✗ no brand-kits found in $KITS_DIR — pass --brand <brand>." >&2; exit 1
+    echo "✗ no brand-kits found in $KITS_DIR" >&2
+    echo "  create one first:  bash \"$SKILL_DIR/scripts/new-brand.sh\" <your-brand>" >&2; exit 1
   elif [ "${#brands[@]}" -eq 1 ]; then
     BRAND="${brands[0]}"
   else
