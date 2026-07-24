@@ -71,7 +71,7 @@ cp "$SKILL_DIR/references/STYLE-FRAME.md" "$BRAND_DIR/STYLE.md"
 cat > "$BRAND_DIR/PATTERNS.md" <<MD
 # $BRAND — PATTERNS
 
-This brand inherits the engine's generic PATTERNS vocabulary (see the \`make-demo\` skill's \`references/PATTERNS.md\` for the full technique list). Add brand-specific techniques here as they're invented. This file **must** define the brand's own closing end-card (mark + seal + resolve animation) — the one mandatory element every demo ends with.
+This brand inherits the engine's generic PATTERNS vocabulary (see the \`make-demo\` skill's \`references/PATTERNS.md\` for the full technique list). Add brand-specific techniques here as they're invented. This brand **must** ship a closing end-card COMPONENT at \`components/end-card/\` (a mini HyperFrames project: \`compositions/frames/end-card.html\` + silent \`end-card.mp4\`; copy the layout from an existing brand-kit) — \`new-demo.sh\` auto-copies its frame into every scaffold as the one mandatory closing beat. Document its look here under a "§ Fixed" section.
 MD
 
 echo "✓ Created $BRAND_DIR"
@@ -83,5 +83,6 @@ echo "  1. Replace every REPLACE value in brand-kit.json — colors.ground and b
 echo "     (the scaffolder substitutes __GROUND__ and __BGM__ from them into each new demo)."
 echo "  2. Drop font/logo/BGM files into $BRAND_DIR/assets/."
 echo "  3. Fill STYLE.md §0–§8 with this brand's real values (extract from a locked reference render)."
-echo "  4. Define the brand's closing end-card in PATTERNS.md."
+echo "  4. Build the brand's closing end-card component at $BRAND_DIR/components/end-card/"
+echo "     (copy the layout from an existing brand-kit; new-demo.sh auto-copies its frame into every demo)."
 echo "  5. Scaffold a demo: \"$SKILL_DIR/scripts/new-demo.sh\" <slug> --brand $BRAND"

@@ -21,7 +21,8 @@
       - One <audio ...voice/NN.wav track-index=10 volume=1> per beat (start = MEASURED VO cue).
       - BGM is PRE-WIRED below — DO NOT DELETE IT (offline auto-BGM is skipped; this is mandatory).
         Set its data-duration = total length.
-      - The last beat is ALWAYS the closing brand-logo end card (STYLE §4.4).
+      - The last beat is ALWAYS the closing brand-logo end card (STYLE §4.4) —
+        new-demo.sh already copied it to compositions/frames/90-end-card.html; mount THAT file.
       - Add cross-frame transitions in the <script> at the seam times (ground __GROUND__ stays continuous).
     -->
     <div id="root" data-composition-id="main" data-start="0" data-duration="__TOTAL__"
@@ -36,12 +37,13 @@
 
       <!-- … more beats … -->
 
-      <!-- Closing brand-logo end card (mandatory last beat) -->
-      <div id="el-NN" class="scene"
-        data-composition-id="NN-close" data-composition-src="compositions/frames/NN-close.html"
-        data-start="0" data-duration="3.8" data-track-index="1"></div>
-      <audio id="el-NN-voice" src="assets/voice/NN.wav"
-        data-start="0" data-duration="2.8" data-track-index="10" data-volume="1"></audio>
+      <!-- Closing brand-logo end card (mandatory last beat — pre-copied by new-demo.sh) -->
+      <div id="el-90" class="scene"
+        data-composition-id="end-card" data-composition-src="compositions/frames/90-end-card.html"
+        data-start="0" data-duration="4.0" data-track-index="1"></div>
+      <!-- optional closing VO over the card: -->
+      <!-- <audio id="el-90-voice" src="assets/voice/NN.wav"
+        data-start="0" data-duration="2.8" data-track-index="10" data-volume="1"></audio> -->
 
       <!-- ── BGM bed — MANDATORY, same v15 track for brand consistency (STYLE §6). Set data-duration = total. ── -->
       <audio id="el-bgm" src="__BGM__" data-start="0" data-duration="__TOTAL__" data-track-index="11" data-volume="0.15"></audio>

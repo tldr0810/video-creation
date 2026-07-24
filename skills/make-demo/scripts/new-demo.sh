@@ -101,6 +101,15 @@ done
 # 3) brand rule-doc snapshots (learning-loop updates go back to the BRAND-KIT copies)
 cp "$BRAND_DIR/STYLE.md" "$BRAND_DIR/PATTERNS.md" "$DEST/"
 
+# 3b) shared closing end card — the one mandatory beat (source of truth lives in the brand-kit)
+END_CARD="$BRAND_DIR/components/end-card/compositions/frames/end-card.html"
+if [ -f "$END_CARD" ]; then
+  cp "$END_CARD" "$DEST/compositions/frames/90-end-card.html"
+else
+  echo "⚠ brand-kit has no components/end-card — scaffold lacks the closing card." >&2
+  echo "  Build one (layout: see an existing brand-kit's components/end-card/ + PATTERNS § Fixed)." >&2
+fi
+
 # 4) brand-value substitution in index.html (from brand-kit.json)
 python3 - "$BRAND_DIR/brand-kit.json" "$DEST/index.html" <<'PY'
 import json, sys, pathlib
@@ -127,4 +136,7 @@ echo "  library: $LIB_DIR"
 echo "  brand:   $BRAND"
 echo "  assets:  fonts · $(ls "$DEST/assets/ui/logos" | wc -l | tr -d ' ') logos · brand-mark · BGM · SFX"
 echo "  docs:    STYLE.md · PATTERNS.md (snapshots)"
+if [ -f "$DEST/compositions/frames/90-end-card.html" ]; then
+  echo "  close:   compositions/frames/90-end-card.html (shared end card — mount as final beat)"
+fi
 echo "  NEXT — follow the skill's 7 gates (see references/PLAYBOOK.md), starting at Gate 0."

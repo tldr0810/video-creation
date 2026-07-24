@@ -71,4 +71,4 @@ The user touches it 3× up front + taste at the end. Claude carries everything i
 - **Always `npm run check`** after editing any composition; fix all errors before rendering.
 - **Ground continuity** (the brand `ground` color under every cut) is checked at Gate 4, every time.
 - **New UI comes from the user.** Don't fabricate product screens; request them at Gate 0. Reconstruct them in-style per STYLE §4.
-- **The last beat is always the closing brand-logo end card** (STYLE §4.4).
+- **The last beat is always the closing brand-logo end card** (STYLE §4.4) — and it is a shared component, not a per-demo build. `new-demo.sh` copies it in as `compositions/frames/90-end-card.html`; mount it as the FINAL beat (demo BGM keeps playing under it) and never rebuild the close by hand. To change the card itself, edit the brand-kit's `components/end-card/` and re-render its `end-card.mp4` (see that folder's README).

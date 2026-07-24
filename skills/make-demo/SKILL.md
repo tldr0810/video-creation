@@ -21,7 +21,7 @@ If any of these are missing on this runtime, STOP and tell the user what to inst
 bash "<SKILL_DIR>/scripts/new-demo.sh" <slug> [--brand <brand>]
 ```
 **First run?** If `<LIBRARY>/brand-kits/` is empty or missing, do NOT scaffold a demo yet — create the user's brand-kit first (§5), then come back.
-Creates `<LIBRARY>/<slug>/` with skeleton + the brand-kit's assets + BGM pre-wired + a working snapshot of the brand `STYLE.md`. If `--brand` is omitted and `<LIBRARY>/brand-kits/` holds exactly one brand-kit, that one is selected automatically; with multiple, the script errors and lists them.
+Creates `<LIBRARY>/<slug>/` with skeleton + the brand-kit's assets + BGM pre-wired + a working snapshot of the brand `STYLE.md` + the brand's shared closing end card (`compositions/frames/90-end-card.html`). If `--brand` is omitted and `<LIBRARY>/brand-kits/` holds exactly one brand-kit, that one is selected automatically; with multiple, the script errors and lists them.
 
 ## 2. Read the brand-kit before authoring
 Read `<LIBRARY>/brand-kits/<brand>/brand-kit.json`, its `STYLE.md` (§0 禁用清單 first), and `PATTERNS.md`. Reconstruct any new UI in-style per STYLE §4 recipes — do not re-derive style.
@@ -49,7 +49,7 @@ Because `new-demo.sh` snapshots the brand STYLE into each project, future demos 
 ```bash
 bash "<SKILL_DIR>/scripts/new-brand.sh" <brand-name>
 ```
-Creates `<LIBRARY>/brand-kits/<brand-name>/` with a template `brand-kit.json`, a `STYLE.md` seeded from `references/STYLE-FRAME.md` (fill §0–§8 with the brand's values), and a `PATTERNS.md` stub (define the brand's closing end-card). Fill the REPLACE values (colors.ground and bgm are required by the scaffolder), drop in fonts/logos/BGM, then scaffold demos with `--brand <brand-name>`.
+Creates `<LIBRARY>/brand-kits/<brand-name>/` with a template `brand-kit.json`, a `STYLE.md` seeded from `references/STYLE-FRAME.md` (fill §0–§8 with the brand's values), and a `PATTERNS.md` stub (directs the brand to build its `components/end-card/`). Fill the REPLACE values (colors.ground and bgm are required by the scaffolder), drop in fonts/logos/BGM, then scaffold demos with `--brand <brand-name>`.
 
 ## References
 - `references/PLAYBOOK.md` — gate detail + conventions.
